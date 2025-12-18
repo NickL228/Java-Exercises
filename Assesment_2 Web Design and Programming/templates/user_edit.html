@@ -1,0 +1,28 @@
+{% extends 'base_admin.html' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+
+<h1>Edit User</h1>
+
+<form method="post">
+    <p><b>Username:</b> {{ user['username'] }}</p>
+
+    <label>Role:</label><br>
+    <select name="role">
+        <option value="employee" {% if user['role']=='employee' %}selected{% endif %}>Employee</option>
+        <option value="manager" {% if user['role']=='manager' %}selected{% endif %}>Manager</option>
+        <option value="admin" {% if user['role']=='admin' %}selected{% endif %}>Admin</option>
+    </select><br><br>
+
+    <label>Status:</label><br>
+    <select name="is_active">
+        <option value="active" {% if user['is_active']=='active' %}selected{% endif %}>Active</option>
+        <option value="blocked" {% if user['is_active']=='blocked' %}selected{% endif %}>Blocked</option>
+    </select><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

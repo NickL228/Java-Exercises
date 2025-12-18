@@ -1,0 +1,16 @@
+{% extends 'base_admin.html' %}
+{% block title %}Blocked Users{% endblock %}
+
+{% block content %}
+<h1>Blocked Users</h1>
+
+{% if users %}
+  <ul>
+    {% for u in users %}
+      <li>{{ u['username'] }} - {{ u['role'] }} ({{ u['is_active'] }})</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No blocked users.</p>
+{% endif %}
+{% endblock %}

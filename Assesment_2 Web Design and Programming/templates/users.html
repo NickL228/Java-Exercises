@@ -1,0 +1,34 @@
+{% extends 'base_admin.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+
+<h1>All Users</h1>
+
+<a href="/users/add">Add New User</a>
+<hr>
+
+{% if users %}
+    <ul>
+        {% for u in users %}
+            <li>
+                {{ u['username'] }} | {{ u['role'] }} | {{ u['is_active'] }}
+
+                <a href="/users/{{ u['uid'] }}/edit">Edit</a>
+
+                {% if u['is_active'] == 'active' %}
+                <form method="post" action="/users/{{ u['uid'] }}/block" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Block this user?');">
+                        Block
+                    </button>
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+{% endblock %}

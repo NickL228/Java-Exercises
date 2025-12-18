@@ -1,0 +1,13 @@
+{% extends 'base_employee.html' %}
+{% block title %}View Customer{% endblock %}
+
+{% block content %}
+<h1>Customer Details</h1>
+
+<p><b>Name:</b> {{ customer['first_name'] }} {{ customer['last_name'] }}</p>
+<p><b>Email:</b> {{ customer['email'] }}</p>
+<p><b>Status:</b> {{ customer['status'] }}</p>
+<p><b>Active:</b> {{ customer['is_active'] }}</p>
+
+<a class="btn btn-secondary" href="/customers">Back</a>
+{% endblock %}

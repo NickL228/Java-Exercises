@@ -1,0 +1,33 @@
+{% extends 'base_employee.html' %}
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+<h1>Customers</h1>
+
+{% if customers %}
+  {% for c in customers %}
+    <div class="mb-3">
+      <h4>{{ c['first_name'] }} {{ c['last_name'] }}</h4>
+      <p>{{ c['email'] }}</p>
+      <p>Status: {{ c['status'] }} | Active: {{ c['is_active'] }}</p>
+
+      <a class="btn btn-sm btn-outline-primary" href="/customer/{{ c['cid'] }}">View</a>
+
+      {% if c['is_active'] != 'disabled' %}
+        <form method="post" action="/customer/{{ c['cid'] }}/disable" style="display:inline;">
+          <button class="btn btn-sm btn-outline-danger" type="submit"
+                  onclick="return confirm('Disable this customer?');">
+            Disable
+          </button>
+        </form>
+      {% else %}
+        <span class="text-muted">(Disabled)</span>
+      {% endif %}
+
+      <hr>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No customers found.</p>
+{% endif %}
+{% endblock %}
